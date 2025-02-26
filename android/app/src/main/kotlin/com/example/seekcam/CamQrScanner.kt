@@ -21,7 +21,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -38,7 +38,7 @@ class CameraPlugin : FlutterPlugin, ActivityAware, CameraHostApi {
     private var cameraProvider: ProcessCameraProvider? = null
     private var previewView: PreviewView? = null
     private var context: Context? = null
-    private var activity: FlutterActivity? = null
+    private var activity: FlutterFragmentActivity? = null
     private var barcodeScanner: BarcodeScanner? = null
     private val analysisExecutor: ExecutorService = Executors.newSingleThreadExecutor()
     private var isScanning = true
@@ -58,7 +58,7 @@ class CameraPlugin : FlutterPlugin, ActivityAware, CameraHostApi {
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        activity = binding.activity as FlutterActivity
+        activity = binding.activity as FlutterFragmentActivity
     }
 
     override fun onDetachedFromActivity() {

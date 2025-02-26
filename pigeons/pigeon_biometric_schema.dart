@@ -1,8 +1,7 @@
 import 'package:pigeon/pigeon.dart';
 @HostApi()
-abstract class BioemtricHostApi {
-  void initialize();
-  void readBiometric();
-  void dispose();
-  void result();
+abstract class BiometricHostApi {
+  void checkBiometricSupport();
+  void handleRegistration();
+  void handleAuthentication();
 }

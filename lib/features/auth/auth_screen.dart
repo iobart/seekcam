@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seekcam/features/auth/biometric_auth.dart';
+import 'package:seekcam/features/auth/biometric_auth_page.dart';
 import 'package:seekcam/features/camera/camera_screen.dart';
 
 class AuthScreen extends StatefulWidget {

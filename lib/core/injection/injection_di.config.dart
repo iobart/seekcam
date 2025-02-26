@@ -17,7 +17,7 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../features/auth/auth.dart' as _i430;
 import '../../features/auth/auth_impl.dart' as _i403;
-import '../../features/auth/biometric_auth.dart' as _i779;
+import '../../features/auth/biometric_auth_page.dart' as _i779;
 import '../../features/handler/permision_handler.dart' as _i833;
 import '../../features/handler/permission_handler_screen.dart' as _i651;
 import '../../features/handler/permission_hanlder_impl.dart' as _i338;
