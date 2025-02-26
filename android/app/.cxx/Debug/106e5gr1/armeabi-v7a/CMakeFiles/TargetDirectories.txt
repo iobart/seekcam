@@ -1,0 +1,2 @@
+/Users/cristianeduardo/StudioProjects/seekcam/android/app/.cxx/Debug/106e5gr1/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/cristianeduardo/StudioProjects/seekcam/android/app/.cxx/Debug/106e5gr1/armeabi-v7a/CMakeFiles/rebuild_cache.dir

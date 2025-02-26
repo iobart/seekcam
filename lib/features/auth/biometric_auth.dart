@@ -1,0 +1,73 @@
+
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
+import 'auth.dart';
+@injectable
+class BiometricAuth extends StatefulWidget {
+  final VoidCallback onAuthenticated;
+
+  const BiometricAuth({super.key, required this.onAuthenticated});
+  @factoryMethod
+  static BiometricAuth create(Key key, VoidCallback callback) => BiometricAuth(key: key, onAuthenticated: () {  });
+  @override
+  _BiometricAuthState createState() => _BiometricAuthState();
+}
+
+class _BiometricAuthState extends State<BiometricAuth> {
+  late final Auth _authHandler ;
+  bool _canCheckBiometrics = false;
+  String _authorized = 'Not Authorized';
+
+  @override
+  void initState() {
+    super.initState();
+    _authHandler = GetIt.instance<Auth>();
+    _checkBiometrics();
+  }
+
+  Future<void> _checkBiometrics() async {
+    final canCheckBiometrics = await _authHandler.canCheckBiometrics();
+    if (!mounted) return;
+
+    setState(() {
+      _canCheckBiometrics = canCheckBiometrics;
+    });
+  }
+
+  Future<void> _authenticate() async {
+    final authenticated = await _authHandler.authenticate();
+    if (!mounted) return;
+
+    setState(() {
+      _authorized = authenticated ? 'Authorized' : 'Not Authorized';
+      if (authenticated) {
+        widget.onAuthenticated();
+      } else {
+        _authHandler.showPinDialog(context, widget.onAuthenticated);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Biometric Authentication'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (_canCheckBiometrics)
+              ElevatedButton(
+                onPressed: _authenticate,
+                child: const Text('Login with Biometrics'),
+              ),
+            Text('Status: $_authorized'),
+          ],
+        ),
+      ),
+    );
+  }
+}
